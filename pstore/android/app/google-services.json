@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "926477125346",
+    "firebase_url": "https://pstore-aba9b.firebaseio.com",
+    "project_id": "pstore-aba9b",
+    "storage_bucket": "pstore-aba9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926477125346:android:839e75c352cb67f58680bb",
+        "android_client_info": {
+          "package_name": "com.hue3.pstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "926477125346-hl3ipi1caaosn82d4453dkk2ru9hr73t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDhdWMhFPG-rAZvBjwrrv1QRT3cs-svyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "926477125346-hl3ipi1caaosn82d4453dkk2ru9hr73t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
