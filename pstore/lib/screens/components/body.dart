@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pstore/constants.dart';
 import 'package:pstore/models/Product.dart';
+import 'package:pstore/screens/details/details_screen.dart';
 import 'categories.dart';
+import 'item_card.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -31,51 +33,20 @@ class Body extends StatelessWidget {
                 crossAxisSpacing: kDefaultPaddin,
                 childAspectRatio: 0.75,
               ),
-              itemBuilder: (context, index) =>
-                  ItemCard(product: products[index]),
+              itemBuilder: (context, index) => ItemCard(
+                product: products[index],
+                press: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailsScreen(
+                        product: products[index],
+                      ),
+                    )),
+              ),
             ),
           ),
         )
       ],
     );
-  }
-}
-
-class ItemCard extends StatelessWidget {
-  final Product product;
-  final Function press;
-  const ItemCard({
-    Key key,
-    this.product,
-    this.press,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(kDefaultPaddin),
-              // height: 180,
-              // width: 160,
-              decoration: BoxDecoration(
-                color: product.color,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Image.asset(product.image),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin / 4),
-            child: Text(
-              product.title,
-              style: TextStyle(color: kTextLightColor),
-            ),
-          ),
-          Text("\$${product.price}",
-              style: TextStyle(fontWeight: FontWeight.bold)),
-        ]);
   }
 }

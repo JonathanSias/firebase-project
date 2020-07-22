@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Product {
   final String image, title, description;
-  final int price, size, id;
+  final num price, size, id;
   final Color color;
   Product({
     this.id,
@@ -18,8 +18,8 @@ class Product {
 List<Product> products = [
   Product(
       id: 1,
-      title: "Office Code",
-      price: 76,
+      title: "Caseinato de Cálcio",
+      price: 76.50,
       size: 12,
       description: dummyText,
       image: "assets/images/08-prot.png",
@@ -27,8 +27,8 @@ List<Product> products = [
   // FF3D82AE
   Product(
       id: 2,
-      title: "Belt Bag",
-      price: 234,
+      title: "Whey Protein Isolado",
+      price: 139.50,
       size: 8,
       description: dummyText,
       image: "assets/images/02-prot.png",
@@ -36,8 +36,8 @@ List<Product> products = [
   // FFD3A984
   Product(
       id: 3,
-      title: "Hang Top",
-      price: 234,
+      title: "Albumina",
+      price: 59.40,
       size: 10,
       description: dummyText,
       image: "assets/images/03-prot.png",
@@ -45,8 +45,8 @@ List<Product> products = [
   // FF989493
   Product(
       id: 4,
-      title: "Old Fashion",
-      price: 234,
+      title: "Barra de proteína",
+      price: 2.34,
       size: 11,
       description: dummyText,
       image: "assets/images/07-prot.png",
@@ -54,8 +54,8 @@ List<Product> products = [
   // FFE6B398
   Product(
       id: 5,
-      title: "Office Code",
-      price: 234,
+      title: "Medium Whey Protein",
+      price: 17.10,
       size: 12,
       description: dummyText,
       image: "assets/images/05-prot.png",
@@ -63,8 +63,8 @@ List<Product> products = [
   // FFFB7883
   Product(
     id: 6,
-    title: "Office Code",
-    price: 234,
+    title: "Soy Protein",
+    price: 39.60,
     size: 12,
     description: dummyText,
     image: "assets/images/06-prot.png",
