@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pstore/constants.dart';
+// import 'package:pstore/constants.dart';
 import 'package:pstore/models/Product.dart';
+import 'package:pstore/screens/details/components/weight.dart';
+
+import 'product_title_with_image.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -22,7 +26,6 @@ class Body extends StatelessWidget {
                     left: kDefaultPaddin,
                     right: kDefaultPaddin,
                   ),
-                  // height: 500,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -30,42 +33,13 @@ class Body extends StatelessWidget {
                       topRight: Radius.circular(24),
                     ),
                   ),
+                  child: Column(
+                    children: <Widget>[
+                      Weight(product: product),
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Whey Protein",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      product.title,
-                      style: Theme.of(context).textTheme.headline4.copyWith(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(text: "Price\n"),
-                              TextSpan(
-                                text: "\$${product.price}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4
-                                    .copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(child: Image.asset(product.image))
-                      ],
-                    )
-                  ],
-                ),
+                ProductTitleWithImage(product: product),
               ],
             ),
           )
