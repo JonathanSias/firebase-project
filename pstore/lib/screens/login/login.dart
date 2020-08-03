@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pstore/screens/login/animation/fade.dart';
+import 'package:pstore/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,13 +129,13 @@ class LoginPageState extends State<LoginPage> {
                             child: Center(
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100),
+                                  borderRadius: BorderRadius.circular(65),
                                 ),
                                 padding: EdgeInsets.all(0.0),
                                 onPressed: () async {},
                                 child: Ink(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(15),
                                       gradient: LinearGradient(colors: [
                                         Color.fromRGBO(143, 148, 251, 1),
                                         Color.fromRGBO(143, 148, 251, .6),
@@ -163,13 +165,13 @@ class LoginPageState extends State<LoginPage> {
                             child: Center(
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100),
+                                  borderRadius: BorderRadius.circular(65),
                                 ),
                                 padding: EdgeInsets.all(0.0),
                                 onPressed: () async {},
                                 child: Ink(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(15),
                                       gradient: LinearGradient(colors: [
                                         Color.fromRGBO(143, 148, 251, 1),
                                         Color.fromRGBO(143, 148, 251, .6),
@@ -199,13 +201,21 @@ class LoginPageState extends State<LoginPage> {
                             child: Center(
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100),
+                                  borderRadius: BorderRadius.circular(65),
                                 ),
                                 padding: EdgeInsets.all(0.0),
-                                onPressed: () async {},
+                                onPressed: () async {
+                                  dynamic result = await _auth.signInAnon();
+                                  if (result == null) {
+                                    print('error sign in');
+                                  } else {
+                                    print('signed in');
+                                    print(result.uid);
+                                  }
+                                },
                                 child: Ink(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(15),
                                       gradient: LinearGradient(colors: [
                                         Color.fromRGBO(143, 148, 251, 1),
                                         Color.fromRGBO(143, 148, 251, .6),

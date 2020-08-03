@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pstore/constants.dart';
 import 'package:pstore/screens/home/components/body.dart';
+import 'package:pstore/services/auth.dart';
 
 class HomeScreen extends StatelessWidget {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +39,13 @@ class HomeScreen extends StatelessWidget {
             color: kTextColor,
           ),
           onPressed: () {},
+        ),
+        FlatButton.icon(
+          icon: Icon(Icons.person),
+          label: Text('sair'),
+          onPressed: () async {
+            await _auth.signOut();
+          },
         ),
         SizedBox(width: kDefaultPaddin / 2)
       ],
