@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:pstore/screens/login/animation/fade.dart';
 import 'package:pstore/services/auth.dart';
 
-class LoginPage extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  LoginPageState createState() => LoginPageState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   // text field state
   String email = '';
   String password = '';
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,14 +64,14 @@ class LoginPageState extends State<LoginPage> {
                                 // left: 5,
                               ),
                               child: Center(
-                                  // child: Text(
-                                  //   "Login",
-                                  //   style: TextStyle(
-                                  //       color: Colors.white,
-                                  //       fontSize: 40,
-                                  //       fontWeight: FontWeight.bold),
-                                  // ),
-                                  ),
+                                child: Text(
+                                  "Registrar",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
                             )),
                       )
                     ],
@@ -141,82 +142,6 @@ class LoginPageState extends State<LoginPage> {
                                 ),
                                 padding: EdgeInsets.all(0.0),
                                 onPressed: () async {
-                                  //
-                                },
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      gradient: LinearGradient(colors: [
-                                        Color.fromRGBO(143, 148, 251, 1),
-                                        Color.fromRGBO(143, 148, 251, .6),
-                                      ])),
-                                  child: Container(
-                                    constraints: BoxConstraints(
-                                        maxWidth: 300, minHeight: 50),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Login via Google",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FadeAnimation(
-                          2,
-                          Container(
-                            height: 50,
-                            child: Center(
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(65),
-                                ),
-                                padding: EdgeInsets.all(0.0),
-                                onPressed: () async {
-                                  //
-                                },
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      gradient: LinearGradient(colors: [
-                                        Color.fromRGBO(143, 148, 251, 1),
-                                        Color.fromRGBO(143, 148, 251, .6),
-                                      ])),
-                                  child: Container(
-                                    constraints: BoxConstraints(
-                                        maxWidth: 300, minHeight: 50),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Login via Email",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FadeAnimation(
-                          2,
-                          Container(
-                            height: 50,
-                            child: Center(
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(65),
-                                ),
-                                padding: EdgeInsets.all(0.0),
-                                onPressed: () async {
                                   dynamic result = await _auth.signInAnon();
                                   if (result == null) {
                                     print('error sign in');
@@ -237,7 +162,7 @@ class LoginPageState extends State<LoginPage> {
                                         maxWidth: 300, minHeight: 50),
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "Login Anônimo",
+                                      "Criar Conta",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
@@ -250,13 +175,13 @@ class LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 70,
                       ),
-                      FadeAnimation(
-                          1.5,
-                          Text(
-                            "Esqueceu a Senha?",
-                            style: TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
-                          )),
+                      // FadeAnimation(
+                      //     1.5,
+                      //     Text(
+                      //       "Esqueceu a Senha?",
+                      //       style: TextStyle(
+                      //           color: Color.fromRGBO(143, 148, 251, 1)),
+                      //     )),
                     ],
                   ),
                 )
