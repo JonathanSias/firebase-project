@@ -3,6 +3,8 @@ import 'package:pstore/screens/login/animation/fade.dart';
 import 'package:pstore/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
+  final Function toggleView;
+  LoginPage({this.toggleView});
   @override
   LoginPageState createState() => LoginPageState();
 }
@@ -63,14 +65,14 @@ class LoginPageState extends State<LoginPage> {
                                 // left: 5,
                               ),
                               child: Center(
-                                  // child: Text(
-                                  //   "Login",
-                                  //   style: TextStyle(
-                                  //       color: Colors.white,
-                                  //       fontSize: 40,
-                                  //       fontWeight: FontWeight.bold),
-                                  // ),
-                                  ),
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
                             )),
                       )
                     ],
@@ -248,15 +250,65 @@ class LoginPageState extends State<LoginPage> {
                             ),
                           )),
                       SizedBox(
-                        height: 70,
+                        height: 50,
                       ),
                       FadeAnimation(
-                          1.5,
-                          Text(
-                            "Esqueceu a Senha?",
-                            style: TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
+                          2,
+                          Container(
+                            height: 50,
+                            child: Center(
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(65),
+                                ),
+                                padding: EdgeInsets.all(0.0),
+                                onPressed: () {
+                                  widget.toggleView();
+                                },
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      gradient: LinearGradient(colors: [
+                                        Color.fromRGBO(143, 148, 251, 1),
+                                        Color.fromRGBO(143, 148, 251, .6),
+                                      ])),
+                                  child: Container(
+                                    constraints: BoxConstraints(
+                                        maxWidth: 300, minHeight: 50),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "Criar Conta",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           )),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      FadeAnimation(
+                        1.5,
+                        Text(
+                          "Esqueceu a Senha?",
+                          style: TextStyle(
+                              color: Color.fromRGBO(143, 148, 251, 1)),
+                        ),
+                      ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // FadeAnimation(
+                      //   1.5,
+                      //   Text(
+                      //     "Não Possuo Conta !",
+                      //     style: TextStyle(
+                      //         color: Color.fromRGBO(143, 148, 251, 1)),
+                      //   ),
+                      // ),
                     ],
                   ),
                 )

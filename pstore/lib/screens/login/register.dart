@@ -3,6 +3,9 @@ import 'package:pstore/screens/login/animation/fade.dart';
 import 'package:pstore/services/auth.dart';
 
 class Register extends StatefulWidget {
+  final Function toggleView;
+  Register({this.toggleView});
+
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -173,8 +176,43 @@ class _RegisterState extends State<Register> {
                             ),
                           )),
                       SizedBox(
-                        height: 70,
+                        height: 10,
                       ),
+                      FadeAnimation(
+                          2,
+                          Container(
+                            height: 50,
+                            child: Center(
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(65),
+                                ),
+                                padding: EdgeInsets.all(0.0),
+                                onPressed: () {
+                                  widget.toggleView();
+                                },
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      gradient: LinearGradient(colors: [
+                                        Color.fromRGBO(143, 148, 251, 1),
+                                        Color.fromRGBO(143, 148, 251, .6),
+                                      ])),
+                                  child: Container(
+                                    constraints: BoxConstraints(
+                                        maxWidth: 300, minHeight: 50),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "Já Possuo Conta",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
                       // FadeAnimation(
                       //     1.5,
                       //     Text(
