@@ -12,9 +12,11 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
   // text field state
   String email = '';
   String password = '';
+  String error = '';
   //
   @override
   Widget build(BuildContext context) {
@@ -82,9 +84,11 @@ class _RegisterState extends State<Register> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(30.0),
-                  child: Column(
-                    children: <Widget>[
-                      FadeAnimation(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        FadeAnimation(
                           1.8,
                           Container(
                             padding: EdgeInsets.all(5),
@@ -111,6 +115,9 @@ class _RegisterState extends State<Register> {
                                           hintText: "Usuário",
                                           hintStyle: TextStyle(
                                               color: Colors.grey[400])),
+                                      validator: (val) => val.isEmpty
+                                          ? 'Informe um e-mail'
+                                          : null,
                                       onChanged: (val) {
                                         setState(() => email = val);
                                       }),
@@ -124,103 +131,117 @@ class _RegisterState extends State<Register> {
                                           hintText: "Senha",
                                           hintStyle: TextStyle(
                                               color: Colors.grey[400])),
+                                      validator: (val) => val.length < 6
+                                          ? 'A senha precisa ter pelo menos 6 caracteres'
+                                          : null,
                                       onChanged: (val) {
                                         setState(() => password = val);
                                       }),
                                 )
                               ],
                             ),
-                          )),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      FadeAnimation(
-                          2,
-                          Container(
-                            height: 50,
-                            child: Center(
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(65),
-                                ),
-                                padding: EdgeInsets.all(0.0),
-                                onPressed: () async {
-                                  dynamic result = await _auth.signInAnon();
-                                  if (result == null) {
-                                    print('error sign in');
-                                  } else {
-                                    print('signed in');
-                                    print(result.uid);
-                                  }
-                                },
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      gradient: LinearGradient(colors: [
-                                        Color.fromRGBO(143, 148, 251, 1),
-                                        Color.fromRGBO(143, 148, 251, .6),
-                                      ])),
-                                  child: Container(
-                                    constraints: BoxConstraints(
-                                        maxWidth: 300, minHeight: 50),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Criar Conta",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          error,
+                          style: TextStyle(color: Colors.red, fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        FadeAnimation(
+                            2,
+                            Container(
+                              height: 50,
+                              child: Center(
+                                child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(65),
+                                  ),
+                                  padding: EdgeInsets.all(0.0),
+                                  onPressed: () async {
+                                    if (_formKey.currentState.validate()) {
+                                      dynamic result = await _auth
+                                          .registerWithEmailAndPassword(
+                                              email, password);
+                                      if (result == null) {
+                                        setState(() => error =
+                                            'Por favor, informe um e-mail válido');
+                                      }
+                                    }
+                                  },
+                                  child: Ink(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        gradient: LinearGradient(colors: [
+                                          Color.fromRGBO(143, 148, 251, 1),
+                                          Color.fromRGBO(143, 148, 251, .6),
+                                        ])),
+                                    child: Container(
+                                      constraints: BoxConstraints(
+                                          maxWidth: 300, minHeight: 50),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Criar Conta",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FadeAnimation(
-                          2,
-                          Container(
-                            height: 50,
-                            child: Center(
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(65),
-                                ),
-                                padding: EdgeInsets.all(0.0),
-                                onPressed: () {
-                                  widget.toggleView();
-                                },
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      gradient: LinearGradient(colors: [
-                                        Color.fromRGBO(143, 148, 251, 1),
-                                        Color.fromRGBO(143, 148, 251, .6),
-                                      ])),
-                                  child: Container(
-                                    constraints: BoxConstraints(
-                                        maxWidth: 300, minHeight: 50),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Já Possuo Conta",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                            )),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        FadeAnimation(
+                            2,
+                            Container(
+                              height: 50,
+                              child: Center(
+                                child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(65),
+                                  ),
+                                  padding: EdgeInsets.all(0.0),
+                                  onPressed: () {
+                                    widget.toggleView();
+                                  },
+                                  child: Ink(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        gradient: LinearGradient(colors: [
+                                          Color.fromRGBO(143, 148, 251, 1),
+                                          Color.fromRGBO(143, 148, 251, .6),
+                                        ])),
+                                    child: Container(
+                                      constraints: BoxConstraints(
+                                          maxWidth: 300, minHeight: 50),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Já Possuo Conta",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )),
-                      // FadeAnimation(
-                      //     1.5,
-                      //     Text(
-                      //       "Esqueceu a Senha?",
-                      //       style: TextStyle(
-                      //           color: Color.fromRGBO(143, 148, 251, 1)),
-                      //     )),
-                    ],
+                            )),
+                        // FadeAnimation(
+                        //     1.5,
+                        //     Text(
+                        //       "Esqueceu a Senha?",
+                        //       style: TextStyle(
+                        //           color: Color.fromRGBO(143, 148, 251, 1)),
+                        //     )),
+                      ],
+                    ),
                   ),
                 )
               ],

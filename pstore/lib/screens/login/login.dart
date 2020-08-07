@@ -6,10 +6,10 @@ class LoginPage extends StatefulWidget {
   final Function toggleView;
   LoginPage({this.toggleView});
   @override
-  LoginPageState createState() => LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final AuthService _auth = AuthService();
   // text field state
   String email = '';
@@ -142,7 +142,7 @@ class LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(65),
                                 ),
                                 padding: EdgeInsets.all(0.0),
-                                onPressed: () async {
+                                onPressed: () {
                                   //
                                 },
                                 child: Ink(
@@ -180,9 +180,7 @@ class LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(65),
                                 ),
                                 padding: EdgeInsets.all(0.0),
-                                onPressed: () async {
-                                  //
-                                },
+                                onPressed: () async {},
                                 child: Ink(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
@@ -221,7 +219,7 @@ class LoginPageState extends State<LoginPage> {
                                 onPressed: () async {
                                   dynamic result = await _auth.signInAnon();
                                   if (result == null) {
-                                    print('error sign in');
+                                    print('error signing in');
                                   } else {
                                     print('signed in');
                                     print(result.uid);
