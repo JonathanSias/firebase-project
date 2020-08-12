@@ -164,8 +164,8 @@ class _LoginPageState extends State<LoginPage> {
                                         borderRadius: BorderRadius.circular(65),
                                       ),
                                       padding: EdgeInsets.all(0.0),
-                                      onPressed: () {
-                                        //
+                                      onPressed: () async {
+                                        await _auth.signInWithGoogle();
                                       },
                                       child: Ink(
                                         decoration: BoxDecoration(
