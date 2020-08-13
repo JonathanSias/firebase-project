@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pstore/screens/home/home_screen.dart';
 import 'package:pstore/screens/login/animation/fade.dart';
 import 'package:pstore/services/auth.dart';
 import 'package:pstore/shared/loading.dart';
@@ -165,7 +166,30 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       padding: EdgeInsets.all(0.0),
                                       onPressed: () async {
-                                        await _auth.signInWithGoogle();
+                                        //
+                                        _auth
+                                            .signInWithGoogle()
+                                            .whenComplete(() {
+                                          setState(() => loading = true);
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return HomeScreen();
+                                              },
+                                            ),
+                                          );
+                                        });
+                                        // dynamic result =
+                                        //     await _auth.signInWithGoogle();
+                                        // if (result != null) {
+                                        //   setState(() => loading = true);
+                                        // } else {
+                                        //   setState(() {
+                                        //     error =
+                                        //         'Falha na autenticação de credenciais';
+                                        //     loading = false;
+                                        //   });
+                                        // }
                                       },
                                       child: Ink(
                                         decoration: BoxDecoration(

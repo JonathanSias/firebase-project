@@ -44,42 +44,22 @@ class AuthService {
   }
 
   // sign in with google
-  Future<String> signInWithGoogle() async {
+  Future signInWithGoogle() async {
     try {
-      final GoogleSignInAccount googleSignInAccount =
-          await googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
-
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
-
-      final AuthResult authResult =
-          await _auth.signInWithCredential(credential);
-      final FirebaseUser user = authResult.user;
-
-      assert(!user.isAnonymous);
-      assert(await user.getIdToken() != null);
-
-      final FirebaseUser currentUser = await _auth.currentUser();
-      assert(user.uid == currentUser.uid);
-
-      return 'signInWithGoogle succeeded: $user';
+      //
     } catch (e) {
       print(e.toString());
-      return null;
     }
   }
-  // Future<FirebaseUser> googleSignIn() async {
-  //   GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-  //   GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-  //   FirebaseUser user = await _auth.signInWithGoogle(
-  //       accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-  //   print('signed in ' + user.displayName);
-  //   return user;
-  // }
+
+  // register with google
+  Future registerWithGoogle() async {
+    try {
+      //
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   // register with email/passwd
   Future registerWithEmailAndPassword(String email, String password) async {
